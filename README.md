@@ -101,13 +101,14 @@ docker run -ti --rm \
 Want to buy me a cup of coffee?
 
 BTC: 3FyTUneEqXrpRyCjmXvH4kdmvg7Tomwc4j
+
 LTC: MFyux9RBvgjy79iQDgtegYMkJbUqiC27i7
+
 ETH: 0xa2b5Be27d03916E48Ae445A48d784B0E3cBD825a
+
 ETC: 0xC4b531135a381d2A91F718249eb33a90f187B231
+
 BTC-CASH: LOL
-
-Thanks
-
 
 ## Credits
 
