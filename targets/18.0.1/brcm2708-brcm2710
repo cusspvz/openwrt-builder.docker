@@ -1,0 +1,2 @@
+OWRT_IMAGE_BUILDER="http://downloads.openwrt.org/releases/18.06.1/targets/brcm2708/bcm2710/openwrt-imagebuilder-18.06.1-brcm2708-bcm2710.Linux-x86_64.tar.xz"
+OWRT_SDK="http://downloads.openwrt.org/releases/18.06.1/targets/brcm2708/bcm2710/openwrt-sdk-18.06.1-brcm2708-bcm2710_gcc-7.3.0_musl.Linux-x86_64.tar.xz"
