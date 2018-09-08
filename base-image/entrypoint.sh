@@ -1,6 +1,6 @@
 #!/bin/sh
 
-chown -R $GOSU_USER /lede
+chown -R $GOSU_USER /src
 
 # If GOSU_USER environment variable set to something other than 0:0 (root:root),
 # become user:group set within and exec command passed in args
