@@ -20,29 +20,28 @@ are meant to be built.
 
 The Image Builder allows developers to build an Image/Firmware to deploy on
 their devices without having to build all the packages from scratch.
-This allows Continuous Delivery systems to be much more eficients since it is
-just installing packages into newly file-systems.
+This allows Continuous Delivery systems to be much more eficient since it is
+just installing packages into lean file-systems.
 
 ## Why?
 
-I've build this because of disadvantages that I found on not having this:
+This project was developed this because of disadvantages found on legacy ones:
 
-1. Setup - It takes some time to setup. And on Docker-based CI environments, 
-in case things aren't cleared properly, it introduces errors in between of
-build iterations. 
+1. Setup - It takes some time to setup, and on Docker-based CI environments, 
+if things aren't cleared properly, error are introduced between build iterations. 
 
-2. Disk usage - A full setup for a target really takes a lot of space. It's
-better to have some setup where we have ephemeral changes between the build
-iterations, but only if we can cache the initial setup. (which we can by
-using docker)
+2. Disk usage - A full setup for a target takes a lot of space. It's much
+more efficient to have a setup where there are ephemeral changes
+between build iterations, assuming caching of the initial setup, which
+can be achieved using docker.
 
 ## Architecture
 
 ### Base image
 `cusspvz/openwrt-builder:base`
 
-We have a base image where all the other images are based from. This image is
-based on Debian and includes all the needed tools to the OpenWRT Builders.
+There is a base image from where all the other images are based. This image is
+based on Debian and includes all the tools needed for the OpenWRT Builders.
 
 ### OpenWRT Package Builder
 `cusspvz/openwrt-builder:package-builder_VERSION_TARGET[_SUBTARGET]`
@@ -60,7 +59,7 @@ Examples: `cusspvz/openwrt-builder:image-builder_17.01.6_brcm2708-bcm2710`
 #### Docker Container folders:
 `/src` - Builder Source
 `/feeds` - folder to link custom feeds. The image detects mounted folders
-automatically, so there's no need to tell us which feeds you want to build.
+automatically, so there's no need to tell which feeds you want to build.
 `/overlay` - folder with files and folders to overlay on the images root
 `/output` - folder to output built images 
 
@@ -82,7 +81,7 @@ docker run -ti --rm \
 
 ### OpenWRT Image/Firmware Builder
 
-Builds all the target's images.
+Builds all the target images.
 
 ```bash
 
@@ -105,14 +104,14 @@ BTC: 3FyTUneEqXrpRyCjmXvH4kdmvg7Tomwc4j
 LTC: MFyux9RBvgjy79iQDgtegYMkJbUqiC27i7
 ETH: 0xa2b5Be27d03916E48Ae445A48d784B0E3cBD825a
 ETC: 0xC4b531135a381d2A91F718249eb33a90f187B231
-BTC-CASH: qpyme0065wt6c37jart8dn7fy8ldwua74spr2s7vy0
+BTC-CASH: LOL
 
 Thanks
 
 
 ## Credits
 
-Thanks to the user [jandelgado](https://github.com/jandelgado) for his work on the
+Thanks to [jandelgado](https://github.com/jandelgado) for his work on the
 docker builder and the docker compiler.
 
 This exists thanks to:
@@ -120,3 +119,4 @@ This exists thanks to:
 - @jandelgado on [lede-dockercompiler](https://github.com/jandelgado/lede-dockercompiler)
 - @jandelgado on [lede-dockerbuilder](https://github.com/jandelgado/lede-dockerbuilder)
 
+## License
