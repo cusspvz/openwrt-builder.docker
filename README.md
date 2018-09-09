@@ -18,7 +18,7 @@ without having to build the entire packaging system. So this means that the
 developers just need to plug-in their Package Feeds and set which packages
 are meant to be built.
 
-### OpenWRT Image/Firmware Builder
+### OpenWRT Image/Firmware Builder
 
 The Image Builder allows developers to build an Image/Firmware to deploy on
 their devices without having to build all the packages from scratch.
@@ -32,33 +32,33 @@ This project was developed this because of disadvantages found on legacy ones:
 1. Setup - It takes some time to setup, and on Docker-based CI environments, 
 if things aren't cleared properly, error are introduced between build iterations. 
 
-2. Disk usage - A full setup for a target takes a lot of space. It's much
+2. Disk usage A full setup for a target takes a lot of space. It's much
 more efficient to have a setup where there are ephemeral changes
 between build iterations, assuming caching of the initial setup, which
 can be achieved using docker.
 
-## Architecture
+## Architecture
 
-### Base image
+### Base image
 `cusspvz/openwrt-builder:base`
 
 There is a base image from where all the other images are based. This image is
 based on Debian and includes all the tools needed for the OpenWRT Builders.
 
-### OpenWRT Package Builder
+### OpenWRT Package Builder
 `cusspvz/openwrt-builder:package-builder_VERSION_TARGET[_SUBTARGET]`
 
 Examples: `cusspvz/openwrt-builder:package-builder_18.0.1_brcm2708-bcm2710`
 Examples: `cusspvz/openwrt-builder:package-builder_17.01.6_brcm2708-bcm2710`
 
 
-### OpenWRT Image/Firmware Builder
+### OpenWRT Image/Firmware Builder
 `cusspvz/openwrt-builder:image-builder_VERSION_TARGET[_SUBTARGET]`
 
 Examples: `cusspvz/openwrt-builder:image-builder_18.0.1_brcm2708-bcm2710`
 Examples: `cusspvz/openwrt-builder:image-builder_17.01.6_brcm2708-bcm2710`
 
-#### Docker Container folders:
+#### Docker Container folders:
 `/src` - Builder Source
 `/feeds` - folder to link custom feeds. The image detects mounted folders
 automatically, so there's no need to tell which feeds you want to build.
@@ -67,7 +67,7 @@ automatically, so there's no need to tell which feeds you want to build.
 
 ## Usage
 
-### OpenWRT Package Builder
+### OpenWRT Package Builder
 
 Builds `.opkg` files and a `Packages.gz`
 
@@ -81,7 +81,7 @@ docker run -ti --rm \
 
 ```
 
-### OpenWRT Image/Firmware Builder
+### OpenWRT Image/Firmware Builder
 
 Builds all the target images.
 
