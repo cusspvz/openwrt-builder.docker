@@ -1,0 +1,10 @@
+# DEVICES:
+# - Raspberry PI 1
+
+OPENWRT_BASE="http://downloads.openwrt.org/releases/18.06.1/targets/brcm2708/bcm2708"
+OPENWRT_CONFIG_SEED="$OPENWRT_BASE/config.seed"
+OPENWRT_IMAGE_BUILDER="$OPENWRT_BASE/openwrt-imagebuilder-18.06.1-brcm2708-bcm2708.Linux-x86_64.tar.xz"
+OPENWRT_PACKAGE_BUILDER="$OPENWRT_BASE/openwrt-sdk-18.06.1-brcm2708-bcm2708_gcc-7.3.0_musl_eabi.Linux-x86_64.tar.xz"
+
+INSTALL_IMAGE_BUILDER="curl $OPENWRT_IMAGE_BUILDER | tar xvJf - --strip-components 1 -C /src"
+INSTALL_PACKAGE_BUILDER="curl $OPENWRT_PACKAGE_BUILDER | tar xvJf - --strip-components 1 -C /src"

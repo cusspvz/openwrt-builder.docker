@@ -1,4 +1,4 @@
-FROM debian:8
+FROM debian:8-slim
 LABEL MAINTAINER "Jose Moreira <josemoreiravarzim@gmail.com>"
 
 RUN echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list \

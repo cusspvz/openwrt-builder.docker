@@ -74,6 +74,7 @@ Builds `.opkg` files and a `Packages.gz`
 ```bash
 
 docker run -ti --rm \
+    -e GOSU_USER=`id -u`:`id -g` \
     -e PACKAGES="transmission openvpn node node-npm" \
     -v /path/to/custom-packages-feed:/feeds/mypackages:z \
     -v /path/to/output-dir:/output:z \
@@ -88,6 +89,7 @@ Builds all the target images.
 ```bash
 
 docker run -ti --rm \
+    -e GOSU_USER=`id -u`:`id -g` \
     -e PACKAGES="-luci transmission openvpn node node-npm" \
     -e CUSTOM_FEEDS="mypackages" \
     -v /path/to/custom-packages-feed:/feeds/mypackages:z \
@@ -97,6 +99,63 @@ docker run -ti --rm \
 
 ```
 
+## Development
+
+Want to build your own images or help us out?
+
+```
+git clone https://github.com/cusspvz/openwrt-builder.docker openwrt-builder
+cd openwrt-builder/
+DOCKER_USERNAME=yourusername ./docker-images-builder.sh
+```
+
+NOTE: The `DOCKER_USERNAME` variable is required so the builder can check which
+images are already built and available on the registry. It also sets the image
+base.
+
+### `docker-images-builder.sh` Environment Variables
+
+Usage example: `DOCKER_USE_SUDO=1 FORCE=1 ./docker-images-builder.sh`
+
+#### `VERBOSIFY`
+Description: Shows all the underlaying command's outputs
+
+Example: `VERBOSIFY=1`
+
+#### `TARGETS`
+Description: List of versions and targets that are meant to be built by the
+image builder. Each list item should contain each version and target concatened
+with an underscore. [ `$VERSION_$TARGET` ]
+Default: Defaults to all versions and targets 
+
+Example: `TARGETS="18.0.1_omap-generic 18.0.1_brcm2708-brcm2708"`
+
+#### `FORCE`
+Description: This script checks if the images already exists on the registry.
+If this environment variable is set, it will always build and push all the 
+version's targets.
+
+This should be used whenever there's a change on the base image.
+
+Example: `FORCE=1`
+
+#### `DOCKER_USE_SUDO`
+Description: If you need `sudo` to run docker on your system, this should be
+set.
+Example: `DOCKER_USE_SUDO=1`
+
+#### `DOCKER`
+Description: This is needed in case you need to change your docker binary path.
+Example: `DOCKER=/path/to/docker`
+
+#### `DOCKER_USERNAME`
+Description: Sets the docker username in order to check if the image is already
+present on the registry. This also is used to prefix the image name.
+
+#### `DOCKER_IMAGE`
+Description: Allows to change the docker image name.
+Note: If this needs to be altered, you still have to set `DOCKER_USERNAME` so
+the caching check works properly. Unless you're setting `FORCE`.
 
 ## Donate
 
