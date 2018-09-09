@@ -1,6 +1,8 @@
-# OpenWRT Docker Builder
+![OpenWRT Logo](https://openwrt.org/lib/tpl/openwrt/images/logo.png)
 
-Docker images for building packages and firmware images
+# OpenWRT Docker Package and Firmware Builder
+Docker images for building packages and firmware files
+
 
 ## What does it do?
 
