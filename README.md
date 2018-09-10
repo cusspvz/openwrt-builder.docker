@@ -99,39 +99,39 @@ docker run -ti --rm \
 
 ```
 
-## Available images
+## Available docker tags
 
 ### 18.0.1
 
 #### brcm2708-brcm2708
-Image Builder -> `image-builder_18.0.1_brcm2708-brcm2708`
-Package Builder -> `image-builder_18.0.1_brcm2708-brcm2708`
+- Image Builder - `cusspvz/openwrt-builder:image-builder_18.0.1_brcm2708-brcm2708`
+- Package Builder - `cusspvz/openwrt-builder:image-builder_18.0.1_brcm2708-brcm2708`
 
-##### Devices:
+##### Compatible Devices:
 - Raspberry Pi 1
 - Raspberry Pi Zero
 - Raspberry Pi Zero W
 
 #### brcm2708-brcm2709
-Image Builder -> `image-builder_18.0.1_brcm2708-brcm2709`
-Package Builder -> `image-builder_18.0.1_brcm2708-brcm2709`
+- Image Builder -> `cusspvz/openwrt-builder:image-builder_18.0.1_brcm2708-brcm2709`
+- Package Builder -> `cusspvz/openwrt-builder:image-builder_18.0.1_brcm2708-brcm2709`
 
-##### Devices:
+##### Compatible Devices:
 - Raspberry Pi 2
 
 #### brcm2708-brcm2710
-Image Builder -> `image-builder_18.0.1_brcm2708-brcm2710`
-Package Builder -> `image-builder_18.0.1_brcm2708-brcm2710`
+- Image Builder -> `cusspvz/openwrt-builder:image-builder_18.0.1_brcm2708-brcm2710`
+- Package Builder -> `cusspvz/openwrt-builder:image-builder_18.0.1_brcm2708-brcm2710`
 
-##### Devices:
+##### Compatible Devices:
 - Raspberry Pi 3
 - Raspberry Pi 3B+
 
 #### omap-generic
-Image Builder -> `image-builder_18.0.1_omap-generic`
-Package Builder -> `image-builder_18.0.1_omap-generic`
+- Image Builder -> `cusspvz/openwrt-builder:image-builder_18.0.1_omap-generic`
+- Package Builder -> `cusspvz/openwrt-builder:image-builder_18.0.1_omap-generic`
 
-##### Devices:
+##### Compatible Devices:
 - BeagleBone Black
 
 ## Development
