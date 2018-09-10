@@ -1,6 +1,3 @@
-# DEVICES:
-# - Raspberry PI 1
-
 OPENWRT_BASE="http://downloads.openwrt.org/releases/18.06.1/targets/brcm2708/bcm2708"
 OPENWRT_CONFIG_SEED="$OPENWRT_BASE/config.seed"
 OPENWRT_IMAGE_BUILDER="$OPENWRT_BASE/openwrt-imagebuilder-18.06.1-brcm2708-bcm2708.Linux-x86_64.tar.xz"
