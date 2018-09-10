@@ -101,37 +101,37 @@ docker run -ti --rm \
 
 ## Available images
 
-### 18.0.1
+### 18.0.1
 
-#### brcm2708-brcm2708
+#### brcm2708-brcm2708
 Image Builder -> `image-builder_18.0.1_brcm2708-brcm2708`
 Package Builder -> `image-builder_18.0.1_brcm2708-brcm2708`
 
-Devices:
+##### Devices:
 - Raspberry Pi 1
 - Raspberry Pi Zero
 - Raspberry Pi Zero W
 
-#### brcm2708-brcm2709
+#### brcm2708-brcm2709
 Image Builder -> `image-builder_18.0.1_brcm2708-brcm2709`
 Package Builder -> `image-builder_18.0.1_brcm2708-brcm2709`
 
-Devices:
+##### Devices:
 - Raspberry Pi 2
 
-#### brcm2708-brcm2710
+#### brcm2708-brcm2710
 Image Builder -> `image-builder_18.0.1_brcm2708-brcm2710`
 Package Builder -> `image-builder_18.0.1_brcm2708-brcm2710`
 
-Devices:
+##### Devices:
 - Raspberry Pi 3
 - Raspberry Pi 3B+
 
-#### omap-generic
+#### omap-generic
 Image Builder -> `image-builder_18.0.1_omap-generic`
 Package Builder -> `image-builder_18.0.1_omap-generic`
 
-Devices:
+##### Devices:
 - BeagleBone Black
 
 ## Development
@@ -152,12 +152,12 @@ base.
 
 Usage example: `DOCKER_USE_SUDO=1 FORCE=1 ./docker-images-builder.sh`
 
-#### `VERBOSIFY`
+#### `VERBOSIFY`
 Description: Shows all the underlaying command's outputs
 
 Example: `VERBOSIFY=1`
 
-#### `TARGETS`
+#### `TARGETS`
 Description: List of versions and targets that are meant to be built by the
 image builder. Each list item should contain each version and target concatened
 with an underscore. [ `$VERSION_$TARGET` ]
@@ -165,7 +165,7 @@ Default: Defaults to all versions and targets
 
 Example: `TARGETS="18.0.1_omap-generic 18.0.1_brcm2708-brcm2708"`
 
-#### `FORCE`
+#### `FORCE`
 Description: This script checks if the images already exists on the registry.
 If this environment variable is set, it will always build and push all the 
 version's targets.
@@ -174,20 +174,20 @@ This should be used whenever there's a change on the base image.
 
 Example: `FORCE=1`
 
-#### `DOCKER_USE_SUDO`
+#### `DOCKER_USE_SUDO`
 Description: If you need `sudo` to run docker on your system, this should be
 set.
 Example: `DOCKER_USE_SUDO=1`
 
-#### `DOCKER`
+#### `DOCKER`
 Description: This is needed in case you need to change your docker binary path.
 Example: `DOCKER=/path/to/docker`
 
-#### `DOCKER_USERNAME`
+#### `DOCKER_USERNAME`
 Description: Sets the docker username in order to check if the image is already
 present on the registry. This also is used to prefix the image name.
 
-#### `DOCKER_IMAGE`
+#### `DOCKER_IMAGE`
 Description: Allows to change the docker image name.
 Note: If this needs to be altered, you still have to set `DOCKER_USERNAME` so
 the caching check works properly. Unless you're setting `FORCE`.
