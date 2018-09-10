@@ -15,7 +15,7 @@ CLEAN=${CLEAN:-0}
 ## HANDLE FEEDS
 cp $PATH_SRC/feeds.conf.default $PATH_SRC/feeds.conf
 for CUSTOM_FEED in $CUSTOM_FEEDS; do
-    echo "src-link ${CUSTOM_FEED} ${PATH_FEEDS}/${CUSTOM_FEED}" >> $PATH_SRC/feeds.conf
+    echo "src-link ${CUSTOM_FEED} file://${PATH_FEEDS}/${CUSTOM_FEED}" >> $PATH_SRC/feeds.conf
 done;
 
 ./scripts/feeds update -a
@@ -24,11 +24,24 @@ for CUSTOM_FEED in $CUSTOM_FEEDS; do
 done;
 
 make defconfig
+echo "- Building packages $PACKAGES..."
 
+COMMANDS=""
+[ "$CLEAN" != "0" ] && {
+  for PACKAGE in $PACKAGES; do
+    COMMANDS="$COMMANDS package/${PACKAGE}/clean"
+  done
+}
 for PACKAGE in $PACKAGES; do
-    [ "$CLEAN" != "0" ] && {
-        make package/${PACKAGE}/clean
-    }
+  COMMANDS="$COMMANDS package/${PACKAGE}/download"
+}
+for PACKAGE in $PACKAGES; do
+  COMMANDS="$COMMANDS package/${PACKAGE}/compile"
+}
 
-    make package/${PACKAGE}/compile
-done
+make -j ${CPUS} ${COMMANDS} \
+  BIN_DIR="$PATH_OUTPUT"
+
+# Move bin/packages contents to the PATH_OUTPUT
+echo "- Moving built packages to output dir..."
+mv -v bin/packages/* $PATH_OUTPUT

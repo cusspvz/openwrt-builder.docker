@@ -3,7 +3,13 @@
 # If GOSU_USER environment variable set to something other than 0:0 (root:root),
 # become user:group set within and exec command passed in args
 if [ "$GOSU_USER" != "0:0" ]; then
+    echo "[OpenWRT Builder] Arranging permissions..."
+
     chown -R $GOSU_USER /src
+    chown -R $GOSU_USER /output
+    [ -d /feeds ] && chown -R $GOSU_USER /feeds
+    [ -d /repositories ] && chown -R $GOSU_USER /repositories
+    [ -d /overlay ] && chown -R $GOSU_USER /overlay
 
     # make sure a valid user exists in /etc/passwd
     if grep "^builder:" /etc/passwd; then

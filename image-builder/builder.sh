@@ -1,1 +1,24 @@
 #!/bin/bash
+
+PROFILE=${PROFILE}
+PACKAGES=${PACKAGES}
+PATH_SRC=/src
+PATH_REPOSITORIES=/repositories
+PATH_OVERLAY=/overlay
+PATH_OUTPUT=/output
+CUSTOM_REPOSITORIES=$(ls $PATH_REPOSITORIES)
+CPUS=${CPUS:-2}
+CLEAN=${CLEAN:-0}
+
+
+## HANDLE REPOSITORYS
+cp $PATH_SRC/repositories.conf $PATH_SRC/repositories.conf.default
+for CUSTOM_REPOSITORY in $CUSTOM_REPOSITORIES; do
+    echo "src ${CUSTOM_REPOSITORY} file://${PATH_REPOSITORIES}/${CUSTOM_REPOSITORY}" >> $PATH_SRC/repositories.conf
+done;
+
+# Build image
+make image \
+  PACKAGES="$PACKAGES" \
+  FILES="$PATH_OVERLAY" \
+  BIN_DIR="$PATH_OUTPUT"

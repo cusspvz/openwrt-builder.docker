@@ -18,7 +18,7 @@ RUN echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/so
 ADD entrypoint.sh /entrypoint
 RUN chmod 755 /entrypoint
 
-RUN mkdir -p /src /output
+RUN mkdir -p /src /output /overlay /repositories /feeds
 WORKDIR /src
 ENTRYPOINT ["/entrypoint"]
 CMD ["/bin/bash"]
