@@ -5,7 +5,7 @@ services:
 
 script:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - FORCE=1 ./docker-images-builder.sh
+  - ./docker-images-builder.sh
 
 branches:
   only:

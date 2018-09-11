@@ -97,6 +97,7 @@ for TARGET in $(ls targets/${VERSION}/); do
   source targets/${VERSION}/${TARGET}
 
   DOCKER_PACKAGE_BUILDER_TAG="package-builder_${VERSION}_${TARGET}"
+  DOCKER_PACKAGE_BUILDER_PRECACHED_TAG="package-builder-precached_${VERSION}_${TARGET}"
   DOCKER_IMAGE_BUILDER_TAG="image-builder_${VERSION}_${TARGET}"
 
   # Handle Package builder
@@ -114,6 +115,23 @@ for TARGET in $(ls targets/${VERSION}/); do
 
     echo "${VERSION} ${TARGET} -> Pushing Package Builder ..."
     $DOCKER push "${DOCKER_IMAGE}:${DOCKER_PACKAGE_BUILDER_TAG}" &> $CLOSE_EXEC;
+  fi
+
+  # Handle Package builder precached
+  if docker_tag_exists "${DOCKER_IMAGE}" "${DOCKER_PACKAGE_BUILDER_PRECACHED_TAG}"; then
+    echo "${VERSION} ${TARGET} -> Package Builder Precached already exists"
+  else
+    echo "${VERSION} ${TARGET} -> Building Package Builder Precached ..."
+    generate_dockerfile_from "${DOCKER_IMAGE}:${DOCKER_PACKAGE_BUILDER_TAG}" ./package-builder-precached/Dockerfile | \
+      $DOCKER build \
+        -f - \
+        --build-arg INSTALL_SRC="$INSTALL_PACKAGE_BUILDER" \
+        -t "${DOCKER_IMAGE}:${DOCKER_PACKAGE_BUILDER_PRECACHED_TAG}" \
+        ./package-builder-precached &> $CLOSE_EXEC \
+      || safeexit "${VERSION} ${TARGET} -X Error Building Package Builder Precached" 2;
+
+    echo "${VERSION} ${TARGET} -> Pushing Package Builder Precached ..."
+    $DOCKER push "${DOCKER_IMAGE}:${DOCKER_PACKAGE_BUILDER_PRECACHED_TAG}" &> $CLOSE_EXEC;
   fi
 
   # Handle Image builder
