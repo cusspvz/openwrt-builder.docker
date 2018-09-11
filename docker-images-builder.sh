@@ -67,16 +67,17 @@ echo
 ### END - SPIT CONFIGS ###
 
 ### BEGIN - BASE IMAGE BUILDING ###
-echo "BASE - Building/Fetching base image"
-
 # Lets pull up the base image
+echo "BASE - Fetching base image"
 $DOCKER pull "${DOCKER_IMAGE}:base" &> $CLOSE_EXEC;
 
 # Now that we have it in cache, lets build the base image to ensure
 # that it has the same output
+echo "BASE - Building base image"
 $DOCKER build -t "${DOCKER_IMAGE}:base" ./base-image &> $CLOSE_EXEC;
 
 # Push the docker base in case it gets changed
+echo "BASE - Pushing base image"
 $DOCKER push "${DOCKER_IMAGE}:base" &> $CLOSE_EXEC;
 ### END - BASE IMAGE BUILDING ###
 
