@@ -1,5 +1,7 @@
 FROM debian:8-slim
 LABEL MAINTAINER "Jose Moreira <josemoreiravarzim@gmail.com>"
+ARG VERSION
+ARG TARGET
 
 RUN echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list \
     && apt-get update \

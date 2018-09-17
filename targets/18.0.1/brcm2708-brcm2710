@@ -4,4 +4,4 @@ OPENWRT_IMAGE_BUILDER="$OPENWRT_BASE/openwrt-imagebuilder-18.06.1-brcm2708-bcm27
 OPENWRT_PACKAGE_BUILDER="$OPENWRT_BASE/openwrt-sdk-18.06.1-brcm2708-bcm2710_gcc-7.3.0_musl.Linux-x86_64.tar.xz"
 
 INSTALL_IMAGE_BUILDER="curl $OPENWRT_IMAGE_BUILDER | tar xvJf - --strip-components 1 -C /src"
-INSTALL_PACKAGE_BUILDER="curl $OPENWRT_PACKAGE_BUILDER | tar xvJf - --strip-components 1 -C /src"
+INSTALL_PACKAGE_BUILDER="curl $OPENWRT_PACKAGE_BUILDER | tar xvJf - --strip-components 1 -C /src; "

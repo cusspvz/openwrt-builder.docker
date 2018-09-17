@@ -41,7 +41,7 @@ DOCKER_IMAGE=${DOCKER_IMAGE:-$DOCKER_USERNAME/openwrt-builder}
 DOCKER="${DOCKER:-docker}"
 FORCE="${FORCE}"
 CLOSE_EXEC="/dev/null"
-[ ! -z $VERBOSIFY ] && CLOSE_EXEC=`tty`
+[ ! -z $DEBUG ] && CLOSE_EXEC=`tty`
 ### END - ARIABLES ###
 
 ### BEGIN - VALIDATION ###
@@ -60,7 +60,7 @@ echo "##  CONFIGS                           ##"
 echo "########################################"
 echo "# TARGETS: $TARGETS"
 echo "# DOCKER: $DOCKER"
-echo "# VERBOSIFY: $([ -z $VERBOSIFY ] && echo "No" || echo "Yes")"
+echo "# DEBUG: $([ -z $DEBUG ] && echo "No" || echo "Yes")"
 echo "# FORCE: $([ -z $FORCE ] && echo "No" || echo "Yes")"
 echo
 echo
@@ -108,6 +108,8 @@ for TARGET in $(ls targets/${VERSION}/); do
     generate_dockerfile_from "${DOCKER_IMAGE}:base" ./package-builder/Dockerfile | \
       $DOCKER build \
         -f - \
+        --build-arg VERSION="$VERSION" \
+        --build-arg TARGET="$TARGET" \
         --build-arg INSTALL_SRC="$INSTALL_PACKAGE_BUILDER" \
         -t "${DOCKER_IMAGE}:${DOCKER_PACKAGE_BUILDER_TAG}" \
         ./package-builder &> $CLOSE_EXEC \
@@ -125,7 +127,8 @@ for TARGET in $(ls targets/${VERSION}/); do
     generate_dockerfile_from "${DOCKER_IMAGE}:${DOCKER_PACKAGE_BUILDER_TAG}" ./package-builder-precached/Dockerfile | \
       $DOCKER build \
         -f - \
-        --build-arg INSTALL_SRC="$INSTALL_PACKAGE_BUILDER" \
+        --build-arg VERSION="$VERSION" \
+        --build-arg TARGET="$TARGET" \
         -t "${DOCKER_IMAGE}:${DOCKER_PACKAGE_BUILDER_PRECACHED_TAG}" \
         ./package-builder-precached &> $CLOSE_EXEC \
       || safeexit "${VERSION} ${TARGET} -X Error Building Package Builder Precached" 2;
@@ -142,6 +145,8 @@ for TARGET in $(ls targets/${VERSION}/); do
     generate_dockerfile_from "${DOCKER_IMAGE}:base" ./image-builder/Dockerfile | \
       $DOCKER build \
         -f - \
+        --build-arg VERSION="$VERSION" \
+        --build-arg TARGET="$TARGET" \
         --build-arg INSTALL_SRC="$INSTALL_IMAGE_BUILDER" \
         -t "${DOCKER_IMAGE}:${DOCKER_IMAGE_BUILDER_TAG}" \
         ./image-builder &> $CLOSE_EXEC \
