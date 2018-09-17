@@ -7,10 +7,10 @@ RUN ./scripts/feeds install openzwave
 RUN ./scripts/feeds install python
 RUN ./scripts/feeds install perl
 RUN ./scripts/feeds install node
-RUN make V=s defconfig;
-RUN make V=s package/bzip2/compile
-RUN make V=s package/zlib/compile
-RUN make V=s package/openzwave/compile
-RUN make V=s package/python/compile
-RUN make V=s package/perl/compile
-RUN make V=s package/node/compile
+RUN make defconfig;
+RUN make package/bzip2/compile
+RUN make package/zlib/compile
+RUN make package/openzwave/compile
+RUN make package/python/compile
+RUN make package/perl/compile
+RUN make package/node/compile
