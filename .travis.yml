@@ -8,7 +8,7 @@ env:
 
 script:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - travis_wait 30 ./docker-images-builder.sh
+  - travis_wait 30 bash ./docker-images-builder.sh
 
 branches:
   only:
