@@ -3,9 +3,6 @@ sudo: required
 services:
   - docker
 
-env:
-  - DEBUG=1
-
 script:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - travis_wait 30 bash ./docker-images-builder.sh
